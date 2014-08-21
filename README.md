@@ -2,7 +2,8 @@ OneNamePy
 =========
 
 ###Description: 
-  Simple Python API, to preform RESTAPI Calls for the JSON data on Onename.io
+  * Simple Python API, to preform RESTAPI Calls for the JSON data on Onename.io.
+  * Last updated for Onename.io Version: 0.2 - 8/20/2014
 
 ---
 ###Example Usage:
@@ -28,3 +29,7 @@ print "Bio: " + getBio(data)
 print "Version: " + getVersion(data)
 ```
 ---
+
+###Donate:
+  1jujuGykhtsMigKzZY7UDcfL2pWgKCK8u
+
