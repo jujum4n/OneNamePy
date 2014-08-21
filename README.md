@@ -9,7 +9,7 @@ OneNamePy
 ###Example Usage: 
    * Most Objects are as dict or JSON, URL calls return as str, if you need it as a string you can use Ex: str(getBitcoin(data))
 ```python
-import OneNamePy
+import OneName
 print "OneNameJsonUrl: " + getOneNameJsonURL("juju")
 print "OneName.io URL: " + getOneNameURL("juju")
 data=getOneNameJson("juju")
