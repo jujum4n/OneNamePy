@@ -123,6 +123,13 @@ def getGraph(JSONTOPARSE):
 #	print GRAPH
 	return GRAPH
 
+#Pre:Given the onename.io/USERNAME.json
+#Post: Returns the version
+def getVersion(JSONTOPARSE):
+	VERSION=JSONTOPARSE["v"]
+#	print VERSION
+	return VERSION
+
 ###########################
 #For Testing Purposes
 #data=getOneNameJson("juju")
@@ -142,4 +149,5 @@ def getGraph(JSONTOPARSE):
 #print "Website: " + getWebsite(data)
 #print "Bio: " + getBio(data)
 #print "OneName.io URL: " + getOneNameURL("juju")
+#print "Version: " + getVersion(data)
 ###########################
