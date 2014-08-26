@@ -1,20 +1,27 @@
 #By: Justin Chase (Onename.io/juju)
 #Description: Simple and Small API for interacting with OneName.io json data
-
 import json
 import urllib2
 
 #Pre:Given the onename.io USERNAME
-#Post: Returns the entire .json file
+#Post: Returns the entire json object using opendig
+def getOpenDigJson(USERNAME):
+	from opendig import ons_resolver #sudo pip install opendig - https://github.com/opennamesystem/opendig
+	data=ons_resolver(USERNAME)
+	return data
+
+#Pre:Given the onename.io USERNAME
+#Post: Returns the entire json object
 def getOneNameJson(USERNAME):
-	data=json.load(urllib2.urlopen("https://onename.io/" + USERNAME + ".json"))
+	URL='https://onename.io/' + str(USERNAME) + '.json'
+	data=json.load(urllib2.urlopen(URL))
 #	print data
 	return data
 
 #Pre:Given the onename.io USERNAME
 #Post: Returns .json URL
 def getOneNameJsonURL(USERNAME):
-	URL="https://onename.io/" + str(USERNAME) + ".json"
+	URL='https://onename.io/' + str(USERNAME) + '.json'
 #	print URL
 	return URL
 
@@ -130,24 +137,80 @@ def getVersion(JSONTOPARSE):
 #	print VERSION
 	return VERSION
 
+#Pre:Given the onename.io/USERNAME in a text file
+#Post: Returns the version associated Bitcoin address and username in a csv format
+def getAllBTCAddrsOpenDig(FILEPATHNAME,OUTPUTFILEPATH):
+	f = open(FILEPATHNAME, 'r')
+	o = open(OUTPUTFILEPATH, 'w')
+	for line in f:
+		data=getOpenDigJson(line.rstrip('\r\n'))
+		if (str(data)!="""{'status': 404, 'message': 'ERROR: Not found'}"""):
+			BTCADDR=getBitcoin(data)
+			print line.rstrip('\r\n')+","+str(BTCADDR)+"\n"
+			o.write(line.rstrip('\r\n')+","+str(BTCADDR)+"\n")
+
+#Pre:Given the onename.io/USERNAME in a text file
+#Post: Returns the version associated Bitcoin address and username in a csv format
+def getAllBTCAddrs(FILEPATHNAME,OUTPUTFILEPATH):
+	f = open(FILEPATHNAME, 'r')
+	o = open(OUTPUTFILEPATH, 'w')
+	for line in f:
+		data=getOneNameJson(line.rstrip('\r\n'))
+		if (str(data)!="""{'status': 404, 'message': 'ERROR: Not found'}"""):
+			BTCADDR=getBitcoin(data)
+			print line.rstrip('\r\n')+","+str(BTCADDR)+"\n"
+			o.write(line.rstrip('\r\n')+","+str(BTCADDR)+"\n")
+
+#Pre:Given the onename.io/USERNAME
+#Post: Prints all associated information related to that user using the onename.io .json files
+def listAllJson(USERNAME):
+	data=getOneNameJson(USERNAME)
+	print "OneNameJsonUrl: " + getOneNameJsonURL(USERNAME)
+	print "Bitcoin Name: " + USERNAME
+	print "Bitcoin Address: " + getBitcoin(data)
+	print "Real Name: " + getRealName(data)
+	print "PGP Fingerprint: " + getPGPFingerPrint(data)
+	print "PGP Keyserver URL: " + getPGPURL(data)
+	print "Cover image URL: " + getCover(data)
+	print "Avatar image URL: " + getAvatar(data)
+	print "Graph image URL: " + getGraph(data)
+	print "Twitter: " + getTwitter(data)
+	print "Twitter URL: " + getTwitterURL(data)
+	print "Github: " + getGithub(data)
+	print "Github URL: " + getGithubURL(data)
+	print "Location: " + getLocation(data)
+	print "Website: " + getWebsite(data)
+	print "Bio: " + getBio(data)
+	print "OneName.io URL: " + getOneNameURL(USERNAME)
+	print "Version: " + getVersion(data)
+
+#Pre:Given the onename.io/USERNAME
+#Post: Prints all associated information related to that user using the onename.io .json files
+def listAllOpendigJson(USERNAME):
+	data=getOpenDigJson(USERNAME)
+	print "OneNameJsonUrl: " + getOneNameJsonURL(USERNAME)
+	print "Bitcoin Name: " + USERNAME
+	print "Bitcoin Address: " + getBitcoin(data)
+	print "Real Name: " + getRealName(data)
+	print "PGP Fingerprint: " + getPGPFingerPrint(data)
+	print "PGP Keyserver URL: " + getPGPURL(data)
+	print "Cover image URL: " + getCover(data)
+	print "Avatar image URL: " + getAvatar(data)
+	print "Graph image URL: " + getGraph(data)
+	print "Twitter: " + getTwitter(data)
+	print "Twitter URL: " + getTwitterURL(data)
+	print "Github: " + getGithub(data)
+	print "Github URL: " + getGithubURL(data)
+	print "Location: " + getLocation(data)
+	print "Website: " + getWebsite(data)
+	print "Bio: " + getBio(data)
+	print "OneName.io URL: " + getOneNameURL(USERNAME)
+	print "Version: " + getVersion(data)
+
 ###########################
 #For Testing Purposes
-#data=getOneNameJson("juju")
-#print "OneNameJsonUrl: " + getOneNameJsonURL("juju")
-#print "Bitcoin Address: " + getBitcoin(data)
-#print "Real Name: " + getRealName(data)
-#print "PGP Fingerprint: " + getPGPFingerPrint(data)
-#print "PGP Keyserver URL: " + getPGPURL(data)
-#print "Cover image URL: " + getCover(data)
-#print "Avatar image URL: " + getAvatar(data)
-#print "Graph image URL: " + getGraph(data)
-#print "Twitter: " + getTwitter(data)
-#print "Twitter URL: " + getTwitterURL(data)
-#print "Github: " + getGithub(data)
-#print "Github URL: " + getGithubURL(data)
-#print "Location: " + getLocation(data)
-#print "Website: " + getWebsite(data)
-#print "Bio: " + getBio(data)
-#print "OneName.io URL: " + getOneNameURL("juju")
-#print "Version: " + getVersion(data)
+#getAllBTCAddrs("newlist", "output.csv")
+#NAME="juju"
+#listAllJson(NAME)
+#listAllOpendigJson(NAME)
 ###########################
