@@ -49,16 +49,24 @@ def getRealName(JSONTOPARSE):
 #Pre:Given the onename.io/USERNAME.json
 #Post: Returns the PGP Keyserver URL
 def getPGPURL(JSONTOPARSE):
-	PGPURL=JSONTOPARSE["pgp"]["url"]
-#	print PGPURL
-	return PGPURL
+	try:
+		PGPURL=JSONTOPARSE["pgp"]["url"]
+	except KeyError:
+		return "No PGP key found"
+	else:
+#		print PGPURL
+		return PGPURL
 
 #Pre:Given the onename.io/USERNAME.json
 #Post: Returns the PGP Fingerprint
 def getPGPFingerPrint(JSONTOPARSE):
-	FINGERPRINT=JSONTOPARSE["pgp"]["fingerprint"]
-#	print FINGERPRINT
-	return FINGERPRINT
+	try:
+		FINGERPRINT=JSONTOPARSE["pgp"]["fingerprint"]
+	except KeyError:
+		return "No PGP key found"
+	else:
+	#	print FINGERPRINT
+		return FINGERPRINT
 
 #Pre:Given the onename.io/USERNAME.json
 #Post: Returns the BIO
@@ -70,13 +78,18 @@ def getBio(JSONTOPARSE):
 #Pre:Given the onename.io/USERNAME.json
 #Post: Returns the website URL
 def getWebsite(JSONTOPARSE):
-	WEBSITE=JSONTOPARSE["website"]
-#	print WEBSITE
-	return WEBSITE
+	try:
+		WEBSITE=JSONTOPARSE["website"]
+	except KeyError:
+		return "No website found."
+	else:
+	#	print WEBSITE
+		return WEBSITE
 
 #Pre:Given the onename.io/USERNAME.json
 #Post: Returns the Location formatted
 def getLocation(JSONTOPARSE):
+
 	LOCATION=JSONTOPARSE["location"]["formatted"]
 #	print LOCATION
 	return LOCATION
@@ -165,6 +178,7 @@ def getAllBTCAddrs(FILEPATHNAME,OUTPUTFILEPATH):
 #Post: Prints all associated information related to that user using the onename.io .json files
 def listAllJson(USERNAME):
 	data=getOneNameJson(USERNAME)
+	print data
 	print "OneNameJsonUrl: " + getOneNameJsonURL(USERNAME)
 	print "Bitcoin Name: " + USERNAME
 	print "Bitcoin Address: " + getBitcoin(data)
@@ -188,6 +202,7 @@ def listAllJson(USERNAME):
 #Post: Prints all associated information related to that user using the onename.io .json files
 def listAllOpendigJson(USERNAME):
 	data=getOpenDigJson(USERNAME)
+	print data
 	print "OneNameJsonUrl: " + getOneNameJsonURL(USERNAME)
 	print "Bitcoin Name: " + USERNAME
 	print "Bitcoin Address: " + getBitcoin(data)
