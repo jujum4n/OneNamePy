@@ -3,7 +3,8 @@ OneNamePy
 
 ###Description: 
   * Simple Python API, to preform RESTAPI Calls for the JSON data on Onename.io.
-  * Last updated for Onename.io Version: 0.2 - 8/20/2014
+  * Contains functions to get the same information using opendig API 
+  * Last updated for http://opennamesystem.org/ Version: 0.2 schema - 9/04/2014
 
 ---
 ###Example Usage: 
@@ -50,6 +51,22 @@ Website: http://jujuman.org
 Bio: Stay Digital
 OneName.io URL: https://onename.io/juju
 Version: 0.2
+```
+###Example Usage: 
+---
+```python
+import onename
+getAllBTCAddrs("c:\usernamelist","c:\outputlist.csv")
+```
+---
+###Output .csv file:
+```
+USERNAME1,BITCOINADDRESS
+USERNAME2,BITCOINADDRESS
+...
+...
+USERNAME100,BITCOINADDRESS
+USERNAME101,BITCOINADDRESS
 ```
 ---
 ###Donate:
