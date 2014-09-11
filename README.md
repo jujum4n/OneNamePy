@@ -1,14 +1,13 @@
 OneNamePy
 =========
-
 ###Description: 
-  * Simple Python API, to preform RESTAPI Calls for the JSON data on Onename.io.
-  * Contains functions to get the same information using opendig API 
-  * Last updated for http://opennamesystem.org/ Version: 0.2 schema - 9/04/2014
-
+  * Simple Python API, to preform calls for JSON data on Onename.io and data on the namecoin blockchain via opendig ons_resolver.
+  * Profile Data creation functions for namecoin client for v0.2 (almost done need to test around facebook and facebook proof)
+  * .json output of data
+  * Last updated for http://opennamesystem.org/ Version: 0.2 schema - 9/10/2014
 ---
 ###Example Usage: 
-   * Most Objects are as dict or JSON, URL calls return as str, if you need it as a string you can use Ex: str(getBitcoin(data))
+   * Most Objects are returned as a String object when possible, or JSON
 ```python
 import Onename
 print "OneNameJsonUrl: " + getOneNameJsonURL("juju")
