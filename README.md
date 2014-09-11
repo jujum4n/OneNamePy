@@ -1,10 +1,11 @@
 OneNamePy
 =========
-###Description: 
+###Description:
   * Simple Python API, to preform calls for JSON data on Onename.io and data on the namecoin blockchain via opendig ons_resolver.
   * Profile Data creation functions for namecoin client for v0.2 (almost done need to test around facebook and facebook proof)
-  * .json output of data
-  * Last updated for http://opennamesystem.org/ Version: 0.2 schema - 9/10/2014
+  * Last updated for http://opennamesystem.org/ - V0.2 schema on 9/10/2014
+
+
 ---
 ###Example Usage: 
    * Most Objects are returned as a String object when possible, or JSON
